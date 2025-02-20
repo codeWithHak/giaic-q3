@@ -5,7 +5,7 @@ import requests
 from datetime import datetime
 
 # Page configuration
-st.set_page_config(page_title="Mental Health Check-In App", page_icon="🧠", layout="centered")
+st.set_page_config(page_title="Mind Check", page_icon="🧠", layout="centered")
 
 # Title
 st.title("Mental Health Check-In App")
