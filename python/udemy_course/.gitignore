@@ -1,0 +1,7 @@
+# Ignore Python virtual environments
+.venv/
+venv/
+__pycache__/
+.mypy_cache/
+*.log
+*.json  # (Agar json files needed nahi hain)
