@@ -1,5 +1,5 @@
 # importing genai a library which will allow us to use gemini model
-from google import  genai
+from google import genai # type: ignore
 import streamlit as st
 import os # is is imported to use environment variables
 
