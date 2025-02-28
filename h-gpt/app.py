@@ -11,8 +11,8 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 # function that will call the api
 def get_gemini_response(user_input):    
     model = genai.GenerativeModel('gemini-2.0-flash')
-    response = model.generate_content(user_input)
-    return response.text
+    response = model.generate_content(user_input, stream=True)
+    return response
 
 
 #taing input from the user
@@ -25,10 +25,11 @@ if user_input:
     # with will automatically stops the spinner when function will be executed
     with st.spinner("Generating response..."):
         response_text = get_gemini_response(user_input)
-        response_placeholder.write(response_text)
+        full_response = ""
+        for chunk in response_text:
+            if chunk.text:
+                full_response += chunk.text
+                response_placeholder.write(full_response)
 
 
 # print(response.text)
-
-for model in genai.list_models():
-    print(model)
