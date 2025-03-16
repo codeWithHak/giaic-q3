@@ -1,0 +1,21 @@
+[
+    {
+        "title": "hhaha",
+        "author": "asasa",
+        "publication_year": 2000,
+        "genre": "sasa",
+        "read_status": true,
+        "rating": null,
+        "notes": "sasas",
+        "date_read": "2025-03-16"
+    },
+    {
+        "title": "dadasdadd",
+        "author": "dadasd",
+        "publication_year": 2000,
+        "genre": "daas",
+        "read_status": false,
+        "rating": null,
+        "notes": "dasdas"
+    }
+]
