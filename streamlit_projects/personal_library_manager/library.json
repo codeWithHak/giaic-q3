@@ -1,21 +1,21 @@
 [
     {
-        "title": "hhaha",
-        "author": "asasa",
-        "publication_year": 2000,
+        "title": "Atomic Habits",
+        "author": "James Clear",
+        "publication_year": 2018,
         "genre": "sasa",
         "read_status": true,
-        "rating": null,
-        "notes": "sasas",
-        "date_read": "2025-03-16"
+        "rating": 3,
+        "notes": "Self-help",
+        "date_read": "2025-03-19"
     },
     {
-        "title": "dadasdadd",
-        "author": "dadasd",
-        "publication_year": 2000,
-        "genre": "daas",
+        "title": "Rich Dad Poor Dad",
+        "author": "Robert Kiyosaki",
+        "publication_year": 1997,
+        "genre": "Finance",
         "read_status": false,
         "rating": null,
-        "notes": "dasdas"
+        "notes": "A great book for handling personal finances."
     }
 ]
