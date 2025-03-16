@@ -16,7 +16,7 @@ phonebook = {
 
 # a continuos loop till user types 'close'
 
-try:
+"""try:
     with open ('phonebook.json','r') as file:
         phonebook = json.load(file)
 except (FileNotFoundError, json.JSONDecodeError):
@@ -52,4 +52,19 @@ while True:
     else:
         print("Invalid input please give input between 'search' or 'add'")
 
-    print(phonebook)
+    print(phonebook)"""
+
+
+    # words in a string excercise
+
+def word_counter(words:str)->dict:
+    splitted_words = words.split()
+    word_count:dict = {}
+    for word in splitted_words:
+        if word in word_count:
+            word_count[word] +=1
+        else:
+            word_count[word] = 1
+    return word_count         
+
+print(word_counter("the the the is am are"))
