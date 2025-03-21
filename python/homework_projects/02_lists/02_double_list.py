@@ -11,9 +11,5 @@ numbers = [2, 4, 6, 8]
 """
 
 def main(numbers):
-    doubled = []
-    for num in numbers:
-        num = num * 2
-        doubled.append(num)
-    print(doubled)
-main([1,2,3,4])
+    return [num * 2 for num in numbers]
+print(main([1,2,3,4]))
