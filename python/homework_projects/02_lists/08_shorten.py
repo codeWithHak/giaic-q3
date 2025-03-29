@@ -8,16 +8,25 @@ For the autograder to pass you will need MAX_LENGTH to be 3, but feel free to ch
 """
 
 def main(lst):
-    lst_len = len(lst)
-    print(lst_len)
+    
+    # storing the length of the list in a variable so we can compare it with MAX_LENGTH
+    lst_len = len(lst)    
+    
+    # set maximum length to three
     MAX_LENGTH = 3
+    
+    # run a loop until the elements in the list are not 3
     while True:
         if lst_len > MAX_LENGTH:
-            print("Before pop: ", "lst: ", lst, "lst_len: ", lst_len)
+            
+            # this will remove an element from the end of the list and the update the cuurent length of the list
             lst.pop()
             lst_len -= 1
-            print("After pop: ", "lst: ", lst, "lst_len: ", lst_len)
+            
         else:
+            
+            # when len is equal to max len this will run
             print(lst)
             break
+        
 main([1,2,3,4,6,6,7])
