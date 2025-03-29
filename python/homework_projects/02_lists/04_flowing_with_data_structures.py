@@ -14,3 +14,17 @@ List after: ['Hello world!', 'Hello world!', 'Hello world!']
 
 (Note. The concept of immutable/mutable data types is called mutability. Be careful because different programming languages have different rules regarding mutability!)"""
 
+
+def add_three (my_list, message):
+    for i in range (3):
+        my_list.append(message)
+
+def main():
+    message = input("Give me a text: ") 
+    my_list = []
+    print("List before: ", my_list)
+    add_three(my_list=my_list, message=message)
+    print("List after: ", my_list)
+    
+    
+main()
