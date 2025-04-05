@@ -24,6 +24,8 @@ just know that hash_password(...) returns the hash for the password!)"""
 
 import hashlib
 
+# 
+
 
 # take input from user when it first came to your website
 user_email = input("Set an email: ")
@@ -31,8 +33,11 @@ user_password = input("Set a password: ")
 
 # create a hash for email
 email_h = hashlib.sha256()
+print("email_h: ",email_h)
 # create a hash for password
 password_h = hashlib.sha256()
+print("password_h: ",password_h)
+
 
 # update the hash you just created with the value that user gave
 email_h.update(user_email.encode())
