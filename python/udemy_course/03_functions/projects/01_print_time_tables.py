@@ -2,6 +2,6 @@
 
 def main (value:int)->str:
     for i in range(11):
-        priresunt(f"{value} x {i} = {value * i}")
-
+        print(f"{value} x {i} = {value * i}")
+    return 's'
 main(5)
