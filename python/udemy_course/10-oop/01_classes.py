@@ -6,8 +6,8 @@ class Person:
 p1 = Person()
 
 # add an attribute "name" to p1
-p1.name = 'john'
-print(p1.name)
+# p1.name = 'john'
+# print(p1.name)
 
 
 # create a constructor
