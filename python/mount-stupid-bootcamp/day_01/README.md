@@ -1,6 +1,8 @@
-Write a Python program that:
+# Day 1 FizzBuzz
 
-Takes input from the user:
+## Write a Python program that:
+
+### Takes input from the user:
 
 A start number (e.g., 1)
 
@@ -20,7 +22,7 @@ If divisible by both → print "FizzBuzz"
 
 Otherwise → print the number
 
-🔍 Example
+## 🔍 Example
 Let's say the user inputs:
 
 start = 1
@@ -28,7 +30,7 @@ end = 15
 fizz_div = 3
 buzz_div = 5
 
-Your program should print:
+## Your program should print:
 
 1
 2
