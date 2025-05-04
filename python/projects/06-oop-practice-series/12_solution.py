@@ -13,4 +13,3 @@ class TemperatureConverter:
 obj1 = TemperatureConverter()
 
 print(obj1.celsius_to_fahrenheit(23))
-        
