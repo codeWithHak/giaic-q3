@@ -211,15 +211,16 @@ class CSVFile(File):
 
 # Excercise 1
 
-# class Person:
-#     def __init__(self,name,age):
-#         self.name =name
-#         self.age = age
+class Person:
+    def __init__(self,name,age):
+        self.name =name
+        self.age = age
         
-# class Employee(Person):
-#     def __init__(self,name,age,employee_id):
-#         super().__init__(name,age)
-#         self.employee_id = employee_id
+class Employee(Person):
+    def __init__(self,name,age,employee_id):
+        super().__init__(name,age)
+        self.employee_id = employee_id
+  
         
 # p = Person('huzaifa',20)        
 # print(type(p))
@@ -243,6 +244,7 @@ class Person:
     def say_hello(self):
         print(f"Hello, I'm {self.name}")    
         
+
 class Employee(Person):
     def __init__(self,name,age,employee_id):
         super().__init__(name,age)
@@ -252,9 +254,63 @@ class Employee(Person):
         super().say_hello()
         print(f"and my ID is {self.employee_id}") 
         
-e = Employee("huzair",20,2)
-e.say_hello()
+# e = Employee("huzair",20,2)
+# e.say_hello()
 
 
 
 # Exercise 3
+
+# Add a new class Manager that inherits from Employee and adds a team_size
+
+# Use super() in Manager to initialize everything properly
+
+class Manager(Employee):
+    def __init__(self,name,age,employee_id,team_size):
+        super().__init__(name,age,employee_id)
+        self.team_size = team_size
+    def say_hello(self):
+        super().say_hello()
+        print(f"and i manage a team of {self.team_size} people")
+        
+# m = Manager("huzair",18,1,99)
+# print(m.name)
+# print(m.age)
+# print(m.employee_id)
+# print(m.team_size)
+# m.say_hello()
+
+
+
+# Excercise 4
+
+# The Diamond Inheritance Problem
+# Here’s the setup:
+    
+# Run d = D() and observe the output.
+
+# Explain why the order is like that (hint: MRO – Method Resolution Order).
+
+# Try changing the inheritance order of class D to class D(C, B) and see how the output changes.
+
+# Bonus: Use super() in every class (as done) and explain why we use super() instead of directly calling A.__init__(), etc.
+
+class A:
+    def __init__(self):
+        print("A init called")
+
+class B(A):
+    def __init__(self):
+        super().__init__()
+        print("B init called")
+
+class C(A):
+    def __init__(self):
+        super().__init__()
+        print("C init called")
+
+class D(B, C):
+    def __init__(self):
+        super().__init__()
+        print("D init called")
+
