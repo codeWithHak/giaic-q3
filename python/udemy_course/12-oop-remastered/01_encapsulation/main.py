@@ -314,3 +314,40 @@ class D(B, C):
         super().__init__()
         print("D init called")
 
+# obj = D()
+# print(D.mro())
+
+
+# Exercise 5
+
+# Modify the Employee and Manager classes from before
+# Instead of explicitly writing parameters, use *args and **kwargs to pass them around
+
+# Create a Manager instance and make sure all attributes are still set
+
+
+
+class Employee(Person):
+    def __init__(self,*args,employee_id,**kwargs):
+        super().__init__(*args, **kwargs)
+        self.employee_id = employee_id
+    
+    def say_hello(self,):
+        super().say_hello()
+        print(f"and my ID is {self.employee_id}") 
+
+class Manager(Employee):
+    def __init__(self,*args, team_size, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.team_size = team_size
+    def say_hello(self):
+        super().say_hello()
+        print(f"and i manage a team of {self.team_size} people")
+        
+        
+m = Manager("huzair",18,employee_id = 1,team_size = 99)
+print(m.name)
+print(m.age)
+print(m.employee_id)
+print(m.team_size)
+m.say_hello()
