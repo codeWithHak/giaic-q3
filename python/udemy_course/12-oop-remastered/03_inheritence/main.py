@@ -93,8 +93,25 @@ class Manager(Employee):
         
         
 m = Manager("huzair",18,employee_id = 1,team_size = 99)
-print(m.name)
-print(m.age)
-print(m.employee_id)
-print(m.team_size)
-m.say_hello()
+# print(m.name)
+# print(m.age)
+# print(m.employee_id)
+# print(m.team_size)
+# m.say_hello()
+
+
+class Duck:
+    def quack(self):
+        print("Quack!")
+
+class Person:
+    def quack(self):
+        print("I can mimic a duck!")
+
+def make_it_quack(thing):
+    thing.quack()  # No type check!
+
+d = Duck()
+p = Person()
+make_it_quack(d)    # Output: Quack!
+make_it_quack(p)  # Output: I can mimic a duck!
