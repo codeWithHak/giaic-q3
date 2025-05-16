@@ -1,49 +1,46 @@
-import streamlit as st
+# print a welcome message
+print(f"{'-'*20} Welcome to unit convertor {'-'*20}")
 
-def main():
-    st.title("Easy Unit Converter")
-    st.header("That Even your grandma could use 😉")
+# all conversions of meter
+length_values={
+    'meter':1,
+    'kilometer':1000,
+    'centimeter':0.01,
+    'millimeter':0.001,
+    'micrometer':1e+6,
+    'nanometer':1e+9,
+    'yard':1.094,
+    'foot':3.281,
+    'inch':39.37,
+    'mile':1609.34
+}
 
-    options = ["Kilometre", "Meter", "Centimetre", "Micrometre", "Nano", 
-               "Mile", "Yard", "Foot", "Inch", "Nautical Mile"]
+print("Available Values")
+for index,val in enumerate(length_values):
+    print(f"{index+1} - {val}")
 
-    # Base unit: Meter
-    conversion_to_meters = {
-        "Kilometre": 1000,
-        "Meter": 1,
-        "Centimetre": 0.01,
-        "Micrometre": 1e-6,
-        "Nano": 1e-9,
-        "Mile": 1609.34,
-        "Yard": 0.9144,
-        "Foot": 0.3048,
-        "Inch": 0.0254,
-        "Nautical Mile": 1852
-    }
+try:
+    from_index = int(input("Convert From (enter number): ")) - 1
+    to_index = int(input("Convert To (enter number): ")) - 1
+    val = float(input("Value: "))
 
-    col1, col2 = st.columns(2)
+except ValueError:
+    print("Invalid Value!")
+    
+units = list(length_values.keys())   
+print(units) 
+from_unit = units[from_index]
+to_unit = units[to_index]
+        
+# a method to convert unit
+def convert_length(val,from_unit,to_unit):
+    
+    # convert user input to meters first
+    meters = val * length_values[from_unit]
+    
+    # perform conversion from meters to selected to_unit also round the value to only two floating points
+    result = round(meters / length_values[to_unit], 2)
+    return result
 
-    with col1:
-        from_option = st.selectbox("From", options)
 
-    with col2:
-        to_option = st.selectbox("To", options)
-
-    with col1:
-        length = st.number_input("Enter Length", value=0.0)
-
-    with col2:
-        if length and from_option and to_option:
-            # Convert input to meters first
-            length_in_meters = length * conversion_to_meters[from_option]
-            # Then convert to target unit
-            result = length_in_meters / conversion_to_meters[to_option]
-
-            rounded_result = round(result, 4)
-            st.success(f"{length:.2f} {from_option} = {rounded_result} {to_option}")
-
-        else:
-            st.warning("Please enter a valid input.")
-
-if __name__ == "__main__":
-    main()
+print(convert_length(val,from_unit,to_unit))
