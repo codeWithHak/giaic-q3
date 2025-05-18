@@ -25,3 +25,9 @@ check_duck(Plane("J10C"))
 
 
 # __new__
+
+first_name,last_name = ("john","doe")
+print(first_name)
+print(type(first_name))
+print(last_name)
+print(type(last_name))
