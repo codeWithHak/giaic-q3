@@ -1,176 +1,107 @@
 import streamlit as st
-import re
-import random
 import string
+import random
+import streamlit.components.v1 as components
 
-# Custom CSS for clean and modern UI
-st.markdown("""
-<style>
-    .stTitle {
-        color: #4A90E2;
-        font-size: 36px;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .stTextInput>div>div>input {
-        border-radius: 10px;
-        padding: 10px;
-        font-size: 16px;
-        border: 2px solid #4A90E2;
-        width: 100%;
-    }
-    .feedback {
-        font-size: 18px;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 20px;
-    }
-    .suggested-password {
-        background-color: #f0f0f0;
-        padding: 10px;
-        border-radius: 10px;
-        margin-top: 20px;
-        text-align: center;
-        font-size: 18px;
-        font-weight: bold;
-    }
-    .copy-button {
-        background-color: #4A90E2;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 8px 16px;
-        font-size: 16px;
-        cursor: pointer;
-        margin-top: 20px;  /* Added padding-top */
-        width: 100%;
-    }
-    .tips {
-        margin-top: 20px;
-        font-size: 16px;
-        color: #555;
-        text-align: center;
-    }
-</style>
-""", unsafe_allow_html=True)
 
-# List of commonly used weak passwords
-WEAK_PASSWORDS = [
-    "12345678", "password", "password123", "123456789", "qwerty", 
-    "abc123", "admin", "letmein", "welcome", "monkey", "sunshine", 
-    "iloveyou", "123123", "1234", "12345", "123456", "1234567"
-]
+# Title and subtitle only for better UI
+st.title("A Strong Password is Like Wings")
+st.subheader("We test wether your wings are strong enough or not!")
 
-# Function to generate a strong password with at least one special character
-def generate_password():
-    characters = string.ascii_letters + string.digits + "!@#$%^&"
-    while True:
-        password = ''.join(random.choice(characters) for _ in range(12))
-        # Ensure the password contains at least one special character
-        if re.search("[!@#$%^&]", password):
-            return password
+# input that takes passowrd
+password = st.text_input(
+    "Check Your Passowrd's Strength",
+    type="password",
+    help="Type your password te see it's strength.",
+    placeholder="Your Password"
+    )
 
-# Initialize session state for copy confirmation
-if "copied" not in st.session_state:
-    st.session_state.copied = False
-
-# App title
-st.title("Password Strength Meter")
-
-# Password input
-password = st.text_input("Enter your password", type="password", placeholder="Type your password here")
-
-# Initialize score and feedback
-score = 0
-feedback = []
-emoji = ''
-
-# Check if password is in the blacklist
-if password and password.lower() in [p.lower() for p in WEAK_PASSWORDS]:
-    feedback.append("❌ This password is too common and easily guessable.")
-    emoji = "⚠️"
-else:
-    # Password strength checks
-    if password:
-        if len(password) >= 8:
-            # Check for lowercase letters
-            if not re.search(r"[a-z]", password):
-                feedback.append("❌ Include lowercase letters.")
-            else:
-                score += 1
-
-            # Check for uppercase letters
-            if not re.search(r"[A-Z]", password):
-                feedback.append("❌ Include uppercase letters.")
-            else:
-                score += 1
-
-            # Check for digits
-            if not re.search(r"\d", password):
-                feedback.append("❌ Include numbers.")
-            else:
-                score += 1
-
-            # Check for special characters
-            if not re.search("[!@#$%^&]", password):
-                feedback.append("❌ Include special characters (e.g., !@#$%^&).")
-            else:
-                score += 1
-
-            # Determine password strength
-            if score == 4:
-                feedback = ["✅ Strong Password"]
-                emoji = "🔒"
-            elif score >= 2:
-                feedback.append("⚠️ Moderate Password")
-                emoji = "🔐"
-            else:
-                feedback.append("❌ Weak Password")
-                emoji = "⚠️"
+# function that checks password's strength
+def check_password_strength(password):
+    special_characters = "!@#$%^&*"
+    pass_len = len(password)
+    
+    # first check if password has special characters
+    if any(char in special_characters for char in password):
+        
+        # then check if it has digits
+        if any(char.isdigit() for char in password):
+            
+            # then check length
+            if pass_len >= 8:
+                st.write("✅ Strong, you are ready to fly high and safe.")
+                
+            elif pass_len < 8:
+                st.write("⚠️  Medium, Increase length.")     
+            
         else:
-            feedback = ["❌ Password must be at least 8 characters long."]
-            emoji = "⚠️"
-
-# Display feedback
-if password:
-    st.markdown(f"<div class='feedback'>{emoji} {' '.join(feedback)}</div>", unsafe_allow_html=True)
-
-    # Progress bar based on password strength
-    if score == 4:
-        st.progress(100)
-    elif score == 3:
-        st.progress(75)
-    elif score == 2:
-        st.progress(50)
-    elif score == 1:
-        st.progress(25)
+            st.write("❌ Weak, Include atleast one number.")
     else:
-        st.progress(0)
+        st.write("❌ Weak, Include atleast one special character.")
 
-    # Password suggestion feature (only shown if password is weak, moderate, or blacklisted)
-    if score < 4 or password.lower() in [p.lower() for p in WEAK_PASSWORDS]:
-        st.markdown("### Need a stronger password? Try this:")
-        suggested_password = generate_password()
+# run the method that checks password
+if password:
+    check_password_strength(password)
+
+
+# a method that generates strong password
+def generate_password():
+    
+    # initialize an empty passwod
+    generated_password = ''
+    
+    # take alphabets and numbers from string module
+    strings = string.ascii_letters # a-z and A-Z
+    numbers = string.digits # 0123456789
+    
+    # take hard coded special characters (string module provides useless characters as well like brackets etc)
+    special_characters = "!@#$%^&*"
+    
+    # now we want to an index so we can take random value from the strings, numbers and special_characters.
+    # for that we will first take len of each variable so we know a range to pick from.
+    # because numbers(10) are less in len, strings(52) are more and special_charatcers(8) are also have different len
+    
+    # count len of each varaible 
+    strings_len = len(strings)
+    numbers_len = len(numbers)
+    special_characters_len = len(special_characters)
+    
+    
+    # run a loob 2 times that will set our password
+    for i in range(2):
         
-        # Display the suggested password in a text box for easy copying
-        st.code(suggested_password, language="text")
+        # add a string that is on a random index but within strings length (52)
+        generated_password += strings[random.randrange(strings_len)]
         
-        # Copy confirmation button
-        if st.button("Copy to Clipboard", key="copy_button"):
-            st.session_state.copied = True
-            st.session_state.suggested_password = suggested_password
+        # add a number that is on a random index but within numbers length (10)
+        generated_password += numbers[random.randrange(numbers_len)]
+        
+        # add a special charatcer that is on a random index but within special_charatcers length (8)
+        generated_password += special_characters[random.randrange(special_characters_len)]
+        
+        # add a string again that is on a random index but within strings length (52)
+        generated_password += strings[random.randrange(strings_len)]
+        
+        # now we have 4 strings 2 special characters and 2 numbers, that's a pretty solid password.
+    
+    # show generated password    
+    st.write(generated_password)
+    
+    # custom button component to copy password to clipboard 
+    components.html(f"""
+                    <button
+                    onclick="navigator.clipboard.writeText('{generated_password}')"
+                    style="
+                        padding:0.5em 1em;
+                        color:white;
+                        border-radius:0.60em;
+                        background-color:transparent;
+                        border:1px 0px solid gray;
+                        cursor:pointer;
+                        "
+                    >Copy</button>""")
 
-        # Show confirmation message if copied
-        if st.session_state.copied:
-            st.success(f"Password '{st.session_state.suggested_password}' copied to clipboard!")
-            st.markdown("**Tip:** You can also click on the password above to manually copy it.")
-
-    # Tips for improving password strength
-    if score < 4 or password.lower() in [p.lower() for p in WEAK_PASSWORDS]:
-        st.markdown("<div class='tips'>💡 <strong>Tips for a stronger password:</strong></div>", unsafe_allow_html=True)
-        st.markdown("- Use a mix of uppercase and lowercase letters.")
-        st.markdown("- Include numbers and special characters.")
-        st.markdown("- Avoid common words and phrases.")
-else:
-    st.markdown("<div class='feedback'>🔑 Enter a password to check its strength.</div>", unsafe_allow_html=True)
+# generate password onclick
+if st.button("Generate Strong Password"):
+    generate_password()
+    
