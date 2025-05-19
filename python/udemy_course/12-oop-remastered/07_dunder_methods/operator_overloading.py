@@ -11,8 +11,8 @@ class Student:
     def __add__(self,other):
         return Student(self.eng + other.eng, self.urdu + other.urdu)
     
-    def __str__(self):
-        return f"English: {self.eng}, Urdu: {self.urdu}"
+    # def __str__(self):
+    #     return f"English: {self.eng}, Urdu: {self.urdu}"
         
     def __gt__(self,other):
         s1 = self.eng + self.urdu    
