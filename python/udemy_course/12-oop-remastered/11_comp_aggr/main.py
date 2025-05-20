@@ -44,3 +44,25 @@ class Body:
 hand = Hand()        
 b = Body(hand)
 b.run()
+
+class Engine:
+    def start(self):
+        print("Engine started")
+        
+class SideMirrors:
+    def set_mirror(self):
+        print("Mirror is set")
+        
+        
+class Car:
+    def __init__(self,mirror):
+        self.engine = Engine()
+        self.mirror = mirror
+        
+    def start(self):
+        self.engine.start()
+        self.mirror.set_mirror()
+        
+sm = SideMirrors()        
+mehran = Car(sm)
+mehran.start()
