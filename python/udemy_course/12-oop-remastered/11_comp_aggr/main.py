@@ -66,3 +66,19 @@ class Car:
 sm = SideMirrors()        
 mehran = Car(sm)
 mehran.start()
+
+class Singleton:
+    
+    var = None
+    
+    def __new__(cls):
+        if cls.var is None:
+            print("creating new class")
+            cls.var = super().__new__(cls)
+        else: 
+            print("using old class")
+            print(cls.var)
+        return cls.var
+    
+s = Singleton()
+d = Singleton()
