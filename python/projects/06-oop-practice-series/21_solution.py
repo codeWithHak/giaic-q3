@@ -1,22 +1,24 @@
+# 21. Make a Custom Class Iterable
+# Assignment:
+# Create a class Countdown that takes a start number. Implement __iter__() and __next__()
+# to make the object iterable in a for-loop, counting down to 0.
+
 class Countdown:
-    def __init__(self, start):
-        self.start = start
-        
+    def __init__(self):
+        self.start = 10
+    
     def __iter__(self):
-        # Initialize the countdown starting value
-        self.current = self.start
-        return self  # Return the object itself as an iterator
+        return self
     
     def __next__(self):
-        # Stop iteration when we reach 0 or below
-        if self.current <= 0:
-            raise StopIteration
+        if self.start >= 1:
+            val = self.start
+            self.start -= 1
+            return val
         else:
-            current_value = self.current
-            self.current -= 1  # Decrement the current value
-            return current_value
+            raise StopIteration
+    
+c = Countdown()
 
-# Using the Countdown class
-countdown = Countdown(5)
-for number in countdown:
-    print(number)
+for i in c:
+    print(i)
