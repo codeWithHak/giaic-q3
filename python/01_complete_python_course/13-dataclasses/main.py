@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import ClassVar, Final
 
 @dataclass
 class Person:
@@ -9,28 +10,38 @@ class Person:
         name(str): Person's name
         age(int): Person's age
         voice(str): Person's voice
+        species(ClassVar[str]): Person's voice
     """
+    # instance attributes
     name:str
     age:int
     voice:str
     
-    @dataclass
-    class UnderPerson:
-        under_name:str
-        under_age:int
-        under_voice:str
-
-        
-        def speak(self):
-            print(f"{self.under_name} is saying {self.under_voice} from under")
+    #class attributes
+    species:ClassVar[str] = "Homo sapien"
     
-    def speak(self):
-        print(f"{self.name} is saying {self.voice}")
+    # class attribute final
+    PlanetType: Final = "Earth"
+    planet:ClassVar[str] = PlanetType
+    
+    countries_visited:list[str] = field(default_factory=list)
+    
+    def speak(self) -> str:
+        return f"{self.name} is saying {self.voice}"
+    
+    
+    def get_species(self) -> str:
+        return f"{self.name} is {self.species}"
         
+    def get_planet(self):
+        return f"{self.name} lives on {self.planet}"
 
-p1 = Person("Huzair",19,"hello")
-p2 = Person.UnderPerson("Huzaifa",20,"bachaaaoooo")
+p1:Person = Person("Huzair",19,"hello")
+
 print(p1)
-p1.speak()
-print(p2)
-p2.speak()
+print(p1.speak())
+print(p1.get_species())
+print(p1.get_planet())
+print(Person.species)
+
+
