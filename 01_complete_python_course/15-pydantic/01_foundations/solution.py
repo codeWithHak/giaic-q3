@@ -1,5 +1,3 @@
-# Create Product model with id, name, price, in_stock
-
 from pydantic import BaseModel
 
 class Product(BaseModel):
