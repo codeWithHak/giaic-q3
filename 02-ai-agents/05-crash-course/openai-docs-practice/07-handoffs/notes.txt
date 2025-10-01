@@ -1,0 +1,5 @@
+Creating Custom Handoff:
+
+1- Create an object with Handoff Class
+2- Create a function that returns an Agent and takes ctx, input_json in parameter. This is the function's name in our code: invoke_sales_agent.
+3- Pass that function in on_invoke_handoff inside custom Handoff class

@@ -1,0 +1,112 @@
+"Every hook must recieve 3 same parameters: 1-self, 2-ctx, 3-agent"
+
+#! -------------- OUTPUTS ------------------:
+
+
+#* 1- on_llm_start
+"""
+SELF:
+<__main__.Hook object at 0x000001AAF6EAC590>
+
+AGENT:
+Agent(
+    name='Assistant',
+    handoff_description=None,
+    tools=[
+        FunctionTool(
+            name='get_weather',
+            description='',
+            params_json_schema={
+                'properties': {'city': {'title': 'City', 'type': 'string'}},
+                'required': ['city'],
+                'title': 'get_weather_args',
+                'type': 'object',
+                'additionalProperties': False
+            },
+            on_invoke_tool=<function function_tool.<locals>._create_function_tool.<locals>._on_invoke_tool at 0x000001AAF6E85F80>,
+            strict_json_schema=True,
+            is_enabled=True
+        )
+    ],
+    mcp_servers=[],
+    mcp_config={},
+    instructions='You are a helpful assistant',
+    prompt=None,
+    handoffs=[],
+    model='gpt-4o-mini',
+    model_settings=ModelSettings(
+        temperature=None,
+        top_p=None,
+        frequency_penalty=None,
+        presence_penalty=None,
+        tool_choice=None,
+        parallel_tool_calls=None,
+        truncation=None,
+        max_tokens=None,
+        reasoning=None,
+        verbosity=None,
+        metadata=None,
+        store=None,
+        include_usage=None,
+        response_include=None,
+        top_logprobs=None,
+        extra_query=None,
+        extra_body=None,
+        extra_headers=None,
+        extra_args=None
+    ),
+    input_guardrails=[],
+    output_guardrails=[],
+    output_type=None,
+    hooks=<__main__.Hook object at 0x000001AAF6EAC590>,
+    tool_use_behavior='run_llm_again',
+    reset_tool_choice=True
+)
+
+CONTEXT:
+RunContextWrapper(
+    context=None,
+    usage=Usage(
+        requests=0,
+        input_tokens=0,
+        input_tokens_details=InputTokensDetails(cached_tokens=0),
+        output_tokens=0,
+        output_tokens_details=OutputTokensDetails(reasoning_tokens=0),
+        total_tokens=0
+    )
+)
+
+SYSTEM PROMPT:
+You are a helpful assistant
+
+INPUT ITEMS
+[{'content': "What's the weather in karachi", 'role': 'user'}]
+"""
+        
+        
+#* 2- on_llm_end
+"""
+OUTPUT:
+ModelResponse(
+    output=[
+        ResponseFunctionToolCall(
+            arguments='{"city":"Karachi"}',
+            call_id='call_qw61ZUYGlH9SPLy8xD6MrV7n',
+            name='get_weather',
+            type='function_call',
+            id='fc_68ced17fe12481958e9306d9c0a398d30f9c4aea105e62ff',
+            status='completed'
+        )
+    ],
+    usage=Usage(
+        requests=1,
+        input_tokens=54,
+        input_tokens_details=InputTokensDetails(cached_tokens=0),
+        output_tokens=16,
+        output_tokens_details=OutputTokensDetails(reasoning_tokens=0),
+        total_tokens=70
+    ),
+    response_id='resp_68ced17f0cb08195932f43a0d89bd8ac0f9c4aea105e62ff'
+)
+"""
+

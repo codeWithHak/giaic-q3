@@ -1,0 +1,58 @@
+# Prompt Engineering
+
+
+## Prompt Eng(pe) vs Context Eng(ce)
+
+- pe me iteraive process hota he aap prompt refine akrsakte ho, ye direct chatbot se hoti he e.g gpt, claude.
+
+- ce e aik hi baar me propmmt dena hota he or har edge case ka apko dihan rakhna hota he pehli dafa me hi, or ye bohat detailed hota he or isme ham xml tags use karte he.
+
+
+
+## Temperature:
+
+Temperature handle karta he ke tokens ko kiya probabitlity score dena he, by default tokens ki probability me bohat differencce hota he jese:
+The cat is ___
+
+Ab next token ki probabilities:
+
+Sleeping - 70%
+Eating - 40%
+Dancing - 5%
+
+Temperature barha denge to ye inko falttern kardega thora, jese:
+Sleeping - 50%
+Eating - 45%
+Dancing - 30%
+
+Ab inki probabilities me kam difference rehgaya or inme se kuch bhi randomly select hosakta he.
+
+
+
+## Top-P:
+
+Isko ham aik probabilty score dete hen let's say isko hamne bola:
+top-p = 0.9
+
+Ab ye probabilites thi:
+
+Sleeping - 70% or 0.7
+Eating - 40% or 0.4
+Dancing - 5% or 0.05
+
+
+Ab top p ko 0.9 di he iska matlab he ke bhai jitne bhi predicted tokens hen unki probabilty dekho or inko sum karo
+or jese hi probabilty 0.9 ke barabar hojaey uske baad ki values mat lena, ye sum top se karna shuru hoga.
+
+Ab kara hamne Top se sum:
+
+Probabilites:
+- 0.7
+- 0.4
+- 0.05
+
+0.7 + 0.4 = 1.1
+
+Ab wo next word nahi dekhega e.g: Dancing. Bas 2 words Sleeping or Eating me se Probabilty nikaal ke le aega.
+
+
